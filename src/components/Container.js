@@ -10,12 +10,12 @@ const Container = () => {
 		setTasks([...tasks, addItem]); 
 	};
 
-	const handleDeleteItem = deleteItem => {
-		setTasks(tasks.filter(item => item.id !== deleteItem));
+	const handleDeleteItem = () => {
+		setTasks(tasks.filter(item => item.done !== true));
 	};
 
-	const handleEditItem = (editItemId, editItem) => {
-		tasks.filter(item => item.id === editItemId).description = editItem.description;
+	const handleDeleteAll = () => {
+		setTasks([]);
 	}
 
 	return (
@@ -25,9 +25,17 @@ const Container = () => {
 			<TaskList 
 				tasks={tasks} 
 				setTasks={setTasks} 
-				handleDeleteItem={handleDeleteItem} 
-				handleEditItem={handleEditItem}
 			/>
+			<button 
+				className="delete-btn" 
+				onClick={handleDeleteItem} >
+					Delete
+			</button>
+			<button 
+				className="delete-btn" 
+				onClick={handleDeleteAll} >
+					Delete all
+			</button>
 		</div>
 	);
 };

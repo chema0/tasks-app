@@ -1,27 +1,18 @@
-import '../App.css';
-import React from 'react';
+import '../App.scss';
+import React, { Fragment } from 'react';
 
-// Add readOnly to input when task is added
 const Task = props => {
-    const { item, dataKey, handleDeleteItem, handleEditItem } = props;
+    const { item, dataKey, handleChange } = props;
 
-    const handleClick = e => {
-        e.preventDefault(); // Avoid page refresh
-        handleDeleteItem(dataKey);
-    };
-
-    const handleChange = e => {
-        e.preventDefault();
-        handleEditItem(item, dataKey);
-    }
-
+    // Plantear uso de Fragment
     return (
-        <div className="taskElement">
-            <form onSubmit={handleClick}>
-                <input className="taskDescription" value={item.description} onChange={handleChange} />
-                <button className="deleteBtn">Delete</button>
-            </form>
-        </div>
+        <li className="task-item">
+            <input type="checkbox" className="hidden-box" name={dataKey} id={dataKey} onChange={handleChange} />
+            <label for={dataKey} className="check--label">
+            <span className="check--label-box"></span>
+            <span className="check--label-text">{item.description}</span>
+            </label>
+        </li>
     );
 }
 
